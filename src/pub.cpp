@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     auto qos_profile = rclcpp::QoS(rclcpp::KeepLast(10));
     auto pub = node->create_publisher<std_msgs::msg::Int32 >("topic_psub1_2", qos_profile);
     std::function<void()> fn = std::bind(pub_callback, node, pub);
-    auto timer = node->create_wall_timer(50ms, fn);
+    auto timer = node->create_wall_timer(1s, fn);
     rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;
